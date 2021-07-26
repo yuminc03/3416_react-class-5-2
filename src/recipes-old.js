@@ -1,11 +1,8 @@
-// recipe-app/src/App.js
 import React from 'react';
-import './App.css';
-import Menu from './components/Menu';
 
 const data = [
   {
-    "name": "구운 연어",
+    "name": "Baked Salmon",
     "ingredients": [
       { "name": "연어", "amount": 500, "measurement": "그램" },
       { "name": "잣", "amount": 1, "measurement": "컵" },
@@ -39,12 +36,37 @@ const data = [
     ]
   }
 ]
-function App() {
-  return (
-    <div className="App">
-      <Menu recipes={data}></Menu>
-    </div>
-  );
-}
 
-export default App;
+const Recipe = ({ name, ingredients, steps }) =>
+    <section id={name.toLowerCase().replace(/ /g, "-")}>
+        <h1>{name}</h1>
+        <ul className="ingredients">
+            {ingredients.map((ingredient, i) =>
+                <li key={i}>{ingredient.name}</li>
+            )}
+        </ul>
+        <section className="instructions">
+            <h2>조리 절차</h2>
+            {steps.map((step, i) =>
+                <p key={i}>{step}</p>
+            )}
+        </section>
+    </section>
+
+const Menu = ({ title, recipes }) =>
+    <article>
+        <header>
+            <h1>{title}</h1>
+        </header>
+        <div className="recipes">
+            {recipes.map((recipe, i) =>
+                <Recipe key={i} {...recipe} />
+            )}
+        </div>
+    </article>
+
+render(
+    <Menu recipes={data}
+          title="맛있는 조리법" />,
+    document.getElementById("react-container")
+)

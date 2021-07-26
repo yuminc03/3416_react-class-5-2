@@ -1,9 +1,4 @@
-// recipe-app/src/App.js
-import React from 'react';
-import './App.css';
-import Menu from './components/Menu';
-
-const data = [
+[
   {
     "name": "구운 연어",
     "ingredients": [
@@ -39,12 +34,3 @@ const data = [
     ]
   }
 ]
-function App() {
-  return (
-    <div className="App">
-      <Menu recipes={data}></Menu>
-    </div>
-  );
-}
-
-export default App;
